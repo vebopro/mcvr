@@ -1,62 +1,112 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width" />
-  <title>VTuber楽曲ランキング投票</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ミューコミVR VTuber楽曲ランキング投票ページ</title>
   <style>
-    textarea, button { font-size: large; }
-    th, td { font-size: large; padding: 5px; }
-    .vote { font-size: xx-large; font-weight: bold; }
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f8f8f8;
+    }
+
+    .container {
+      width: 80%;
+      max-width: 600px;
+      background: white;
+      border: 2px solid gray;
+      padding: 20px;
+      text-align: left;
+    }
+
+    .title {
+      text-align: center;
+      font-size: x-large;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    textarea {
+      width: 100%;
+      font-size: large;
+      margin-top: 10px;
+    }
+
+    button {
+      font-size: large;
+      background: whitesmoke;
+      border: 1px solid gray;
+      padding: 5px 15px;
+      color: black;
+      margin-top: 10px;
+    }
   </style>
-</head>
-<body>
-  <div class="vote">VTuber楽曲ランキング投票ページ</div>
-  <table>
-    <tr>
-      <td>
-        <textarea id="message" rows="5" cols="40" maxlength="96">
-(※1)の『※2』に投票します！
-        </textarea>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <input type="checkbox" class="song" value="(アーティストA)の『曲A』"> アーティストA の 曲A<br>
-        <input type="checkbox" class="song" value="(アーティストB)の『曲B』"> アーティストB の 曲B<br>
-        <input type="checkbox" class="song" value="(アーティストC)の『曲C』"> アーティストC の 曲C<br>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <button onclick="vote()">投票ポスト</button>
-        <button onclick="copy()">DM送信</button>
-      </td>
-    </tr>
-  </table>
   <script>
-    function getSelectedSongs() {
-      let selected = [];
-      document.querySelectorAll(".song:checked").forEach(checkbox => {
-        selected.push(checkbox.value);
+    function generateText() {
+      let checkedSongs = [];
+      document.querySelectorAll('input[name="song"]:checked').forEach((el) => {
+        checkedSongs.push(`(${el.dataset.artist})の『${el.dataset.title}』`);
       });
-      return selected.join('、');
+
+      document.getElementById("message").value = checkedSongs.join("、") + "に投票します！\n#ミューコミVR #VTuber楽曲ランキング";
     }
-    
+
     function vote() {
-      let selectedSongs = getSelectedSongs();
-      if (!selectedSongs) return alert("曲を選択してください。");
-      let message = `"${selectedSongs}"に投票します！\n#ミューコミVR #VTuber楽曲ランキング`;
-      window.open("https://x.com/intent/tweet?text=" + encodeURIComponent(message));
+      let message = encodeURIComponent(document.getElementById("message").value.trim());
+      window.open("https://x.com/intent/tweet?text=" + message);
     }
-    
+
     function copy() {
-      let selectedSongs = getSelectedSongs();
-      if (!selectedSongs) return alert("曲を選択してください。");
-      let message = `"${selectedSongs}"に投票します！ #ミューコミVR #VTuber楽曲ランキング`;
-      window.open("https://x.com/messages/compose?recipient_id=100786821&text=" + encodeURIComponent(message));
+      let message = encodeURIComponent(document.getElementById("message").value.trim());
+      window.open("https://x.com/messages/compose?recipient_id=100786821&text=" + message);
     }
   </script>
-  <p>DM送信する前に<a href="https://x.com/mc1242" target="_blank">ミューコミVR</a>さんをフォロー！</p>
+</head>
+
+<body>
+  <div class="container">
+    <div class="title">ミューコミVR VTuber楽曲ランキング投票ページ</div>
+    <table>
+      <tr>
+        <td><input type="checkbox" name="song" data-artist="常勝無敗ぐぬぬ" data-title="恩反し" onchange="generateText()"> (常勝無敗ぐぬぬ)『恩反し』</td>
+      </tr>
+      <tr>
+        <td><input type="checkbox" name="song" data-artist="常勝無敗ぐぬぬ" data-title="黙ってらんない" onchange="generateText()"> (常勝無敗ぐぬぬ)『黙ってらんない』</td>
+      </tr>
+      <tr>
+        <td><input type="checkbox" name="song" data-artist="甘葛すもあ" data-title="ショコラ・ザ・バス" onchange="generateText()"> (甘葛すもあ)『ショコラ・ザ・バス』</td>
+      </tr>
+      <tr>
+        <td><input type="checkbox" name="song" data-artist="甘葛すもあ" data-title="Carol" onchange="generateText()"> (甘葛すもあ)『Carol』</td>
+      </tr>
+      <tr>
+        <td><input type="checkbox" name="song" data-artist="甘葛すもあ" data-title="NOCTURNE" onchange="generateText()"> (甘葛すもあ)『NOCTURNE』</td>
+      </tr>
+      <tr>
+        <td><input type="checkbox" name="song" data-artist="カカ・エツボニール" data-title="えいえいWOWイェイOh" onchange="generateText()"> (カカ・エツボニール)『えいえいWOWイェイOh』</td>
+      </tr>
+      <tr>
+        <td><input type="checkbox" name="song" data-artist="カカ・エツボニール" data-title="SPACEOUT" onchange="generateText()"> (カカ・エツボニール)『SPACEOUT』</td>
+      </tr>
+      <tr>
+        <td><input type="checkbox" name="song" data-artist="カカ・エツボニール" data-title="TENTEKOMAI" onchange="generateText()"> (カカ・エツボニール)『TENTEKOMAI』</td>
+      </tr>
+      <tr>
+        <td><input type="checkbox" name="song" data-artist="コインランドリースカッド" data-title="しるぶぷる～ぷ" onchange="generateText()"> (コインランドリースカッド)『しるぶぷる～ぷ』</td>
+      </tr>
+    </table>
+
+    <textarea id="message" rows="5" cols="40" readonly></textarea>
+
+    <div>
+      <button onclick="vote()">投票ポスト</button>
+      <button onclick="copy()">DM送信</button>
+    </div>
+  </div>
 </body>
+
 </html>
