@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width" />
+  <title>VTuber楽曲ランキング投票</title>
+  <style>
+    textarea, button { font-size: large; }
+    th, td { font-size: large; padding: 5px; }
+    .vote { font-size: xx-large; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <div class="vote">VTuber楽曲ランキング投票ページ</div>
+  <table>
+    <tr>
+      <td>
+        <textarea id="message" rows="5" cols="40" maxlength="96">
+(※1)の『※2』に投票します！
+        </textarea>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <input type="checkbox" class="song" value="(アーティストA)の『曲A』"> アーティストA の 曲A<br>
+        <input type="checkbox" class="song" value="(アーティストB)の『曲B』"> アーティストB の 曲B<br>
+        <input type="checkbox" class="song" value="(アーティストC)の『曲C』"> アーティストC の 曲C<br>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <button onclick="vote()">投票ポスト</button>
+        <button onclick="copy()">DM送信</button>
+      </td>
+    </tr>
+  </table>
+  <script>
+    function getSelectedSongs() {
+      let selected = [];
+      document.querySelectorAll(".song:checked").forEach(checkbox => {
+        selected.push(checkbox.value);
+      });
+      return selected.join('、');
+    }
+    
+    function vote() {
+      let selectedSongs = getSelectedSongs();
+      if (!selectedSongs) return alert("曲を選択してください。");
+      let message = `"${selectedSongs}"に投票します！\n#ミューコミVR #VTuber楽曲ランキング`;
+      window.open("https://x.com/intent/tweet?text=" + encodeURIComponent(message));
+    }
+    
+    function copy() {
+      let selectedSongs = getSelectedSongs();
+      if (!selectedSongs) return alert("曲を選択してください。");
+      let message = `"${selectedSongs}"に投票します！ #ミューコミVR #VTuber楽曲ランキング`;
+      window.open("https://x.com/messages/compose?recipient_id=100786821&text=" + encodeURIComponent(message));
+    }
+  </script>
+  <p>DM送信する前に<a href="https://x.com/mc1242" target="_blank">ミューコミVR</a>さんをフォロー！</p>
+</body>
+</html>
