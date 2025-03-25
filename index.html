@@ -3,7 +3,13 @@
 
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@vebopro" />
+  <meta name="twitter:creator" content="@vevopro" />
+  <meta name="og:type" content="article" />
+  <meta name="og:title" content="ミューコミVR VTuber楽曲ランキング投票ページ" />
+  <meta name="og:description" content="投票したい曲にチェックを入れてボタンを押してください" />
   <title>ミューコミVR VTuber楽曲ランキング投票ページ</title>
   <style>
     body {
@@ -11,101 +17,77 @@
       justify-content: center;
       align-items: center;
       height: 100vh;
-      background-color: #f8f8f8;
+      background-color: #f9f9f9;
     }
-
     .container {
-      width: 80%;
-      max-width: 600px;
-      background: white;
-      border: 2px solid gray;
+      border: 2px solid black;
       padding: 20px;
+      background: white;
       text-align: left;
     }
-
-    .title {
-      text-align: center;
-      font-size: x-large;
-      font-weight: bold;
-      margin-bottom: 10px;
-    }
-
     textarea {
+      font-size: large;
       width: 100%;
-      font-size: large;
-      margin-top: 10px;
     }
-
-    button {
+    td {
       font-size: large;
+    }
+    button {
+      font-size: x-large;
       background: whitesmoke;
       border: 1px solid gray;
-      padding: 5px 15px;
+      padding: 2px 15px;
       color: black;
-      margin-top: 10px;
+    }
+    th {
+      text-align: left;
+    }
+    .vote {
+      font-size: xx-large;
+      font-weight: bolder;
     }
   </style>
-  <script>
-    function generateText() {
-      let checkedSongs = [];
-      document.querySelectorAll('input[name="song"]:checked').forEach((el) => {
-        checkedSongs.push(`(${el.dataset.artist})の『${el.dataset.title}』`);
-      });
-
-      document.getElementById("message").value = checkedSongs.join("、") + "に投票します！\n#ミューコミVR #VTuber楽曲ランキング";
-    }
-
-    function vote() {
-      let message = encodeURIComponent(document.getElementById("message").value.trim());
-      window.open("https://x.com/intent/tweet?text=" + message);
-    }
-
-    function copy() {
-      let message = encodeURIComponent(document.getElementById("message").value.trim());
-      window.open("https://x.com/messages/compose?recipient_id=100786821&text=" + message);
-    }
-  </script>
 </head>
 
 <body>
   <div class="container">
-    <div class="title">ミューコミVR VTuber楽曲ランキング投票ページ</div>
+    <div class="vote">ミューコミVR VTuber楽曲ランキング投票ページ</div>
     <table>
       <tr>
-        <td><input type="checkbox" name="song" data-artist="常勝無敗ぐぬぬ" data-title="恩反し" onchange="generateText()"> (常勝無敗ぐぬぬ)『恩反し』</td>
+        <td>
+          <table>
+            <tr><td><input type="checkbox" id="song1" name="song1" /><label for="song1">(常勝無敗ぐぬぬ)『恩反し』</label></td></tr>
+            <tr><td><input type="checkbox" id="song2" name="song2" /><label for="song2">(常勝無敗ぐぬぬ)『黙ってらんない』</label></td></tr>
+            <tr><td><input type="checkbox" id="song3" name="song3" /><label for="song3">(甘葛すもあ)『ショコラ・ザ・バス』</label></td></tr>
+            <tr><td><input type="checkbox" id="song4" name="song4" /><label for="song4">(甘葛すもあ)『Carol』</label></td></tr>
+            <tr><td><input type="checkbox" id="song5" name="song5" /><label for="song5">(甘葛すもあ)『NOCTURNE』</label></td></tr>
+            <tr><td><input type="checkbox" id="song6" name="song6" /><label for="song6">(カカ・エツボニール)『えいえいWOWイェイOh』</label></td></tr>
+            <tr><td><input type="checkbox" id="song7" name="song7" /><label for="song7">(カカ・エツボニール)『SPACEOUT』</label></td></tr>
+            <tr><td><input type="checkbox" id="song8" name="song8" /><label for="song8">(カカ・エツボニール)『TENTEKOMAI』</label></td></tr>
+            <tr><td><input type="checkbox" id="song9" name="song9" /><label for="song9">(迷電ワークス)『キミの気持ちが知りたいの』</label></td></tr>
+            <tr><td><input type="checkbox" id="song10" name="song10" /><label for="song10">(コインランドリースカッド)『しるぶぷる～ぷ』</label></td></tr>
+          </table>
+        </td>
       </tr>
       <tr>
-        <td><input type="checkbox" name="song" data-artist="常勝無敗ぐぬぬ" data-title="黙ってらんない" onchange="generateText()"> (常勝無敗ぐぬぬ)『黙ってらんない』</td>
+        <th>投票メッセージ</th>
       </tr>
       <tr>
-        <td><input type="checkbox" name="song" data-artist="甘葛すもあ" data-title="ショコラ・ザ・バス" onchange="generateText()"> (甘葛すもあ)『ショコラ・ザ・バス』</td>
+        <td>
+          <textarea id="message" name="message" rows="3">(※1)の『※2』に投票します！</textarea>
+        </td>
       </tr>
       <tr>
-        <td><input type="checkbox" name="song" data-artist="甘葛すもあ" data-title="Carol" onchange="generateText()"> (甘葛すもあ)『Carol』</td>
+        <td>
+          <button onclick="vote()">投票ポスト</button>
+        </td>
       </tr>
       <tr>
-        <td><input type="checkbox" name="song" data-artist="甘葛すもあ" data-title="NOCTURNE" onchange="generateText()"> (甘葛すもあ)『NOCTURNE』</td>
-      </tr>
-      <tr>
-        <td><input type="checkbox" name="song" data-artist="カカ・エツボニール" data-title="えいえいWOWイェイOh" onchange="generateText()"> (カカ・エツボニール)『えいえいWOWイェイOh』</td>
-      </tr>
-      <tr>
-        <td><input type="checkbox" name="song" data-artist="カカ・エツボニール" data-title="SPACEOUT" onchange="generateText()"> (カカ・エツボニール)『SPACEOUT』</td>
-      </tr>
-      <tr>
-        <td><input type="checkbox" name="song" data-artist="カカ・エツボニール" data-title="TENTEKOMAI" onchange="generateText()"> (カカ・エツボニール)『TENTEKOMAI』</td>
-      </tr>
-      <tr>
-        <td><input type="checkbox" name="song" data-artist="コインランドリースカッド" data-title="しるぶぷる～ぷ" onchange="generateText()"> (コインランドリースカッド)『しるぶぷる～ぷ』</td>
+        <td>
+          <button onclick="copy()">DM送信</button>
+        </td>
       </tr>
     </table>
-
-    <textarea id="message" rows="5" cols="40" readonly></textarea>
-
-    <div>
-      <button onclick="vote()">投票ポスト</button>
-      <button onclick="copy()">DM送信</button>
-    </div>
   </div>
 </body>
 
