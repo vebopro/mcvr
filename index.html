@@ -46,6 +46,25 @@
     }
   </style>
   <script>
+    function updateCheckboxes() {
+      let checkedBoxes = document.querySelectorAll('input[name="song"]:checked');
+      let allCheckboxes = document.querySelectorAll('input[name="song"]');
+      
+      if (checkedBoxes.length >= 1) {
+        allCheckboxes.forEach(box => {
+          if (!box.checked) {
+            box.disabled = true;
+          }
+        });
+      } else {
+        allCheckboxes.forEach(box => {
+          box.disabled = false;
+        });
+      }
+      
+      generateText();
+    }
+
     function generateText() {
       let checkedSongs = [];
       document.querySelectorAll('input[name="song"]:checked').forEach((el) => {
@@ -72,43 +91,43 @@
     <div class="title">ミューコミVR VTuber楽曲ランキング投票ページ</div>
     <table>
       <tr>
-        <td><input type="checkbox" name="song" data-artist="常勝無敗ぐぬぬ" data-title="恩反し" onchange="generateText()"> (常勝無敗ぐぬぬ)『恩反し』</td>
+        <td><input type="checkbox" name="song" data-artist="常勝無敗ぐぬぬ" data-title="恩反し" onchange="updateCheckboxes()"> (常勝無敗ぐぬぬ)『恩反し』</td>
       </tr>
       <tr>
-        <td><input type="checkbox" name="song" data-artist="常勝無敗ぐぬぬ" data-title="黙ってらんない" onchange="generateText()"> (常勝無敗ぐぬぬ)『黙ってらんない』</td>
+        <td><input type="checkbox" name="song" data-artist="常勝無敗ぐぬぬ" data-title="黙ってらんない" onchange="updateCheckboxes()"> (常勝無敗ぐぬぬ)『黙ってらんない』</td>
       </tr>
       <tr>
-        <td><input type="checkbox" name="song" data-artist="甘葛すもあ" data-title="ショコラ・ザ・バス" onchange="generateText()"> (甘葛すもあ)『ショコラ・ザ・バス』</td>
+        <td><input type="checkbox" name="song" data-artist="甘葛すもあ" data-title="ショコラ・ザ・バス" onchange="updateCheckboxes()"> (甘葛すもあ)『ショコラ・ザ・バス』</td>
       </tr>
       <tr>
-        <td><input type="checkbox" name="song" data-artist="甘葛すもあ" data-title="Carol" onchange="generateText()"> (甘葛すもあ)『Carol』</td>
+        <td><input type="checkbox" name="song" data-artist="甘葛すもあ" data-title="Carol" onchange="updateCheckboxes()"> (甘葛すもあ)『Carol』</td>
       </tr>
       <tr>
-        <td><input type="checkbox" name="song" data-artist="甘葛すもあ" data-title="NOCTURNE" onchange="generateText()"> (甘葛すもあ)『NOCTURNE』</td>
+        <td><input type="checkbox" name="song" data-artist="甘葛すもあ" data-title="NOCTURNE" onchange="updateCheckboxes()"> (甘葛すもあ)『NOCTURNE』</td>
       </tr>
       <tr>
-        <td><input type="checkbox" name="song" data-artist="カカ・エツボニール" data-title="えいえいWOWイェイOh" onchange="generateText()"> (カカ・エツボニール)『えいえいWOWイェイOh』</td>
+        <td><input type="checkbox" name="song" data-artist="カカ・エツボニール" data-title="えいえいWOWイェイOh" onchange="updateCheckboxes()"> (カカ・エツボニール)『えいえいWOWイェイOh』</td>
       </tr>
       <tr>
-        <td><input type="checkbox" name="song" data-artist="カカ・エツボニール" data-title="SPACEOUT" onchange="generateText()"> (カカ・エツボニール)『SPACEOUT』</td>
+        <td><input type="checkbox" name="song" data-artist="カカ・エツボニール" data-title="SPACEOUT" onchange="updateCheckboxes()"> (カカ・エツボニール)『SPACEOUT』</td>
       </tr>
       <tr>
-        <td><input type="checkbox" name="song" data-artist="カカ・エツボニール" data-title="TENTEKOMAI" onchange="generateText()"> (カカ・エツボニール)『TENTEKOMAI』</td>
+        <td><input type="checkbox" name="song" data-artist="カカ・エツボニール" data-title="TENTEKOMAI" onchange="updateCheckboxes()"> (カカ・エツボニール)『TENTEKOMAI』</td>
       </tr>
       <tr>
-        <td><input type="checkbox" name="song" data-artist="コインランドリースカッド" data-title="しるぶぷる～ぷ" onchange="generateText()"> (コインランドリースカッド)『しるぶぷる～ぷ』</td>
+        <td><input type="checkbox" name="song" data-artist="コインランドリースカッド" data-title="しるぶぷる～ぷ" onchange="updateCheckboxes()"> (コインランドリースカッド)『しるぶぷる～ぷ』</td>
       </tr>
       <tr>
         <td><input type="checkbox" name="song" data-artist="迷電ワークス" data-title="キミの気持ちが知りたいの" onchange="generateText()"> (迷電ワークス)『キミの気持ちが知りたいの』</td>
       </tr>
-    </table>
+
     </table>
 
     <textarea id="message" rows="5" cols="40" readonly></textarea>
 
     <div>
-      <button onclick="vote()">投票ポスト</button>
-      <button onclick="copy()">DM送信</button> ※要フォロー
+      <button onclick="vote()">Xにポスト</button>
+      <button onclick="copy()">DM送信</button>　※要ミューコミVRのアカウントフォロー
     </div>
   </div>
 </body>
